@@ -40,8 +40,6 @@ articleSchema.pre('validate', function (next) {
     }
 
        if(this.markdown) {
-        console.log(this.markdown)
-        console.log(marked.parse(this.markdown));
          this.sanitizedHtml = dompurify.sanitize(marked.parse(this.markdown))
        }
     next()
