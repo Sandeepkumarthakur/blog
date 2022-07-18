@@ -28,4 +28,7 @@ app.get('/', async (req, res) => {
 app.use('/articles', articleRouter)
 
 let PORT = 5000 | process.env.PORT;
-app.listen(PORT)
+console.log('Env port'+PORT)
+app.listen(PORT,()=>{
+    console.log(PORT)
+})
