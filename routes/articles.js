@@ -13,6 +13,7 @@ router.get('/edit/:id', async (req, res) => {
 router.get('/:slug', async (req, res) => {
     const article = await Article.findOne({ slug: req.params.slug })
     if (article == null) res.redirect('/')
+    console.log("found"+article)
     res.render('articles/show', { article: article })
 })
 router.post('/', async (req, res) => {
@@ -50,11 +51,14 @@ function saveArticleAndRedirect(path) {
         article.title = req.body.title
         article.description = req.body.description
         article.markdown = req.body.markdown
+        console.log(path)
         try {
             article = await article.save()
+            console.log("article.js"+article);
             res.redirect(`/articles/${article.slug}`)
         } catch (e) {
-            res.render('articles/$(path)', { article: article })
+            console.log("error", e);
+            res.render(`articles/${path}`, { article: article })
         }
     }
 }
